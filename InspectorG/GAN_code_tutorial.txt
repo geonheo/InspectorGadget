@@ -1,0 +1,27 @@
+gan_aug_trainer.py
+
+[PARAMETER]
+--n_epochs 	: Number of epochs (default : 200)
+--batch_size 	: Mini-batch size (default : 1)
+--vector_size	: The size of input random noise vector (default : 100)
+--lr_G		: Learning rate of Geneartor	(default : 0.0001)
+--lr_D		: Learning rate of Discriminator (default : 0.0001)
+--d_image	: Dimension of input image (color : 3, grayscale : 1)
+--resize		: If every input images have different sizes, image resize is required. The size of resize image (default : 100) * If the resize is changed, DISCRIMNATOR and GENERATOR are also changed.
+--path		: Folder which has images
+--c_period	: Checkpoint period. Every c_period epochs, backup is executed. (default : 100) 
+
+Ex)  python gan_aug_trainer.py --batch_size 5 --d_image 1 --path NEW_IG/SKT_half/Scratch/Scratch/ --resize 100 --n_epochs 2000 --c_period 100
+
+gan_aug_generator.py
+
+[PARAMETER]
+--vector size
+--d_image
+--image_size 	: Image_size same as resize or original image size used at training GAN
+--save_path	: Path that generated images are saved
+--save_folder_path	: Path of save_folder (the folder of package)
+--model_path	: Path of generator model (pkl file)
+--g_num		: The number of generated images
+
+Ex) python gan_aug_generator.py --vector_size 100 --d_image 1 --save_path Generated_image/ --save_folder_path Save_folder/ --model_path Save_folder/G_Model_Save/Generator.pkl --g_num 10
