@@ -69,7 +69,7 @@ class FeatureGenerator:
         else:
             return abs(min_val), (min_loc[0], min_loc[1], min_loc[0]+x, min_loc[1]+y)
     
-    def GenFeature(self, save = True):
+    def GenFeature(self, save = True, print_log = False):
         """
         Generate features of the unlabeled images using fg_function().
         
@@ -95,7 +95,8 @@ class FeatureGenerator:
                     res = self.fg_function(imgdir, patdir)
                     feature_dict[pid][patname] = res
             else:
-                print('%s -> Already Generated' % patname)
+                if print_log:
+                    print('%s -> Already Generated' % patname)
         if len(self.featuredict) != 0 and len(dict(feature_dict)) != 0:
             self.featuredict = combine_featuredict(self.featuredict, dict(feature_dict))
         elif len(self.featuredict) == 0:

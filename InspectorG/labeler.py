@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neural_network import MLPClassifier
 import sklearn.metrics
 
-RAND = 1 # default random seed
+RAND = None # default random seed
 
 class CrossValidation():
     def __init__ (self, data, labels):
@@ -184,31 +184,3 @@ def train_recursive_cv(xtr, ytr, k, layernum, test_iter = 40, max_iter = 400, ma
     idx = np.argmax(perf_list)
     max_model, _ = get_Perf_model_tmp(xtr, ytr, xtr, ytr, layer_list[idx], max_iter, rand)
     return max_model
-
-#==============================For experiment============================================
-# def make_function_true(xtr, ytr, xte, yte, iteration, rand):
-#     def get_ROC_F1(layer):
-#         layer = tuple(layer)
-#         _, f1 = get_Perf_model_tmp(xtr, ytr, xte, yte, layer, iteration, rand)
-#         return layer, f1
-#     return get_ROC_F1
-
-# def train_recursive_true(xtr, ytr, xte, yte, layernum, max_iter = 400, margin = 1, rand = RAND, min_layer = 2):
-     
-#     N = get_max_layer_size(np.shape(xtr)[1])
-#     layer_list, perf_list = [], []
-#     input_function = make_function_true(xtr, ytr, xte, yte, max_iter, rand)
-        
-#     candidates = search(input_function, N, layernum, min_layer, margin)
-#     for layer, perf in candidates:
-#         if perf != 0:
-#             layer_list.append(layer)
-#             perf_list.append(perf)
-
-#     idx = np.argmax(perf_list)
-#     max_model, _ = get_Perf_model_tmp(xtr, ytr, xte, yte, layer_list[idx], max_iter, rand)
-    
-#     idx = np.argmin(perf_list)
-#     min_model, _ = get_Perf_model_tmp(xtr, ytr, xte, yte, layer_list[idx], max_iter, rand)
-    
-#     return max_model, min_model
